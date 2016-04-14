@@ -8,7 +8,6 @@ Package.describe({
 Package.onUse(function (api) {
   api.versionsFrom('METEOR@1.2.1');
   api.use('meteor-platform');
-  api.use('less');
   api.use('http');
   api.use('base64');
   api.use('underscore');
@@ -17,9 +16,14 @@ Package.onUse(function (api) {
   api.use('reactioncommerce:reaction-router');
   api.use('reactioncommerce:reaction-collections');
   api.use('momentjs:moment@2.10.6');
+  api.addFiles('lib/shipstation.js');
+  api.addFiles([
+    'common/collections.js'
+  ], ['client', 'server']);
 
   api.addFiles([
-    'server/registry.js'
+    'server/registry.js',
+    'server/methods/shipstation.js'
   ], 'server');
 
   api.addFiles([
@@ -28,4 +32,5 @@ Package.onUse(function (api) {
     'client/templates/dashboard/dashboard.html',
     'client/templates/dashboard/dashboard.js'
   ], 'client');
+  api.export('Shipstation');
 });

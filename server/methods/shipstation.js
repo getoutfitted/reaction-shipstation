@@ -1,45 +1,33 @@
+function shipstationPackageConfigured(shipstation) {
+  if (!shipstation || !shipstation.enabled) {
+    throw new Error('403 Access Denied, Shipstation is not enabled for this shop.');
+  }
+  if (!shipstation.settings
+      || !shipstation.settings.api
+      || !shipstation.settings.api.apiKey
+      || !shipstation.settings.api.secret) {
+    throw new Error('403 Shiptation API Keys are not configured');
+  }
+}
+
 Meteor.methods({
-  'shipstation/createOrder': function (order, key) {
+  'shipstation/createOrder': function (order) {
     check(order, Object);
-    check(key, String);
-    let shipstationOrder = {
-      orderNumber: order.orderNumber,
-      orderDate: order.createdAt,
-      orderStatus: 'awaiting_shipment',
-      billTo: {
-        name: 'Paul Grever',
-        company: 'GetOutfitted',
-        street1: '460 S Marion pkwy',
-        street2: '1602C',
-        street3: null,
-        city: 'Denver',
-        state: 'CO',
-        postalCode: '80209',
-        phone: '6082392471',
-        residential: true,
-        addressVerified: 'Address validated successfully'
-      },
-      shipTo: {
-        name: 'Paul Grever',
-        company: 'GetOutfitted',
-        street1: '460 S Marion pkwy',
-        street2: '1602C',
-        street3: null,
-        city: 'Denver',
-        state: 'CO',
-        postalCode: '80209',
-        phone: '6082392471',
-        residential: true,
-        addressVerified: 'Address validated successfully'
-      }
-    };
+
+    const shipstationPackage = ReactionCore.Collections.Packages.findOne({
+      name: 'reaction-shipstation',
+      shopId: ReactionCore.getShopId()
+    });
+    shipstationPackageConfigured(shipstationPackage);
+    let formattedAuth = shipstationPackage.settings.api.apiKey + ':' + shipstationPackage.settings.api.secret;
+    let encodedAuth = Base64.encode(formattedAuth);
 
     HTTP.call('POST', 'https://ssapi.shipstation.com/orders/createorder', {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + key
+        'Authorization': 'Basic ' + encodedAuth
       },
-      data: shipstationOrder
+      data: order
     });
   }
 });

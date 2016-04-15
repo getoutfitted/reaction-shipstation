@@ -1,7 +1,7 @@
 <template name='shipStationDashboard'>
   <div class='container text-center'>
     <div class='row text-center'>
-      <h1>Shipstation</h1>
+      <h1><a href="https://www.shipstation.com"><i class="fa fa-cog" aria-hidden="true"></i> Shipstation</a></h1>
     </div>
     <div class='row'>
       <h2 class='text-center'>About</h2>
@@ -10,29 +10,33 @@
     </div>
     <div class='row'>
       <h2 class='text-center'>Set Up</h2>
-      <p>1) <a href='https://help.shipstation.com/hc/en-us/articles/206638917-How-can-I-get-access-to-ShipStation-s-API-'>Generate Shipstation API Keys</a></p>
-      <p>2) Copy and Paste Access Key and Secret Key in Reaction-ShipStation's Package settings. Click the <i class="fa fa-cog" aria-hidden="true"></i> </p>
-      <p>3) Click Save!</p>
-      <p>4) Make sure you enable the package by clicking the <i class="fa fa-plus-square"></i></p>
+      <div class='well'>
+        <p>1) <a href='https://help.shipstation.com/hc/en-us/articles/206638917-How-can-I-get-access-to-ShipStation-s-API-'>Generate Shipstation API Keys</a></p>
+        <p>2) Copy and Paste Access Key and Secret Key in Reaction-ShipStation's Package settings. Click the <i class="fa fa-cog" aria-hidden="true"></i> </p>
+        <p>3) Click Save!</p>
+        <p>4) Make sure you enable the package by clicking the <i class="fa fa-plus-square"></i></p>
+      </div>
     </div>
     <div class='row'>
       <h2 class='text-center'>Create Order</h2>
-      <p>Reaction-Shipstation integrates <a href='http://www.shipstation.com/developer-api/#/reference/orders/orderscreateorder/post'>Shipstations createorder API</a> to push orders to your Shipstation's account. You now have access to exported Shipstation module, which has method:<code>Shipstation.createorder()</code></p>
-      <h3>Implementing createorder</h3>
-      <p>Anywhere in your Reaction Code you can insert this line of code <code>Shipstation.createorder(order)</code> and pass in an order object as an parameter.</p>
-      <h4>Required Order Object Propeties</h4>
-      <p><code>orderNumber: Number</code></p>
-      <p><code>orderDate: Date</code></p>
-      <p><code>orderStatus: String</code> Must Be One of: <code>['awaiting_payment',
-                          'awaiting_shipment',
-                          'shipped',
-                          'on_hold',
-                          'cancelled']</code> </p>
-      <p><code>billTo: Object</code> <a href='https://www.shipstation.com/developer-api/#/reference/model-address'>See Address Model</a></p>
-      <p><code>shipTo: Object</code> <a href='https://www.shipstation.com/developer-api/#/reference/model-address'>See Address Model</a></p>
-      <h4>Optional Order Object Propeties</h4>
-      <p>In addition to required fields you may also pass in many more shipping fields.</p>
-      <p><a href='https://www.shipstation.com/developer-api/#/reference/orders/orderscreateorder/post'><strong>Check out the Shipstation createorder docs for all available options</strong></a></p>
+      <div class='well'>
+        <p>Reaction-Shipstation integrates <a href='http://www.shipstation.com/developer-api/#/reference/orders/orderscreateorder/post'>Shipstations createorder API</a> to push orders to your Shipstation's account. You now have access to exported Shipstation module, which has method:<code>Shipstation.createorder()</code></p>
+        <h3>Implementing createorder</h3>
+        <p>Anywhere in your Reaction Code you can insert this line of code <code>Shipstation.createorder(order)</code> and pass in an order object as an parameter.</p>
+        <h4>Required Order Object Propeties</h4>
+        <p><code>orderNumber: Number</code></p>
+        <p><code>orderDate: Date</code></p>
+        <p><code>orderStatus: String</code> Must Be One of: <code>['awaiting_payment',
+                            'awaiting_shipment',
+                            'shipped',
+                            'on_hold',
+                            'cancelled']</code> </p>
+        <p><code>billTo: Object</code> <a href='https://www.shipstation.com/developer-api/#/reference/model-address'>See Address Model</a></p>
+        <p><code>shipTo: Object</code> <a href='https://www.shipstation.com/developer-api/#/reference/model-address'>See Address Model</a></p>
+        <h4>Optional Order Object Propeties</h4>
+        <p>In addition to required fields you may also pass in many more shipping fields.</p>
+        <p><a href='https://www.shipstation.com/developer-api/#/reference/orders/orderscreateorder/post'><strong>Check out the Shipstation createorder docs for all available options</strong></a></p>
+      </div>
     </div>
   </div>
 </template>

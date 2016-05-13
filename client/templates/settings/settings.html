@@ -1,3 +1,17 @@
-<template name='shipStationSettings'>
-  <h1>yo</h1>
+<template name='shipstationSettings'>
+    <div class="panel-body">
+    {{#autoForm
+        collection="ReactionCore.Collections.Packages"
+        schema="ReactionCore.Schemas.ShipstationPackageConfig"
+        doc=packageData
+        type="update"
+        id="shipstation-update-form"
+        }}
+
+    <h2>ShipStation Configuration</h2>
+    {{>afQuickField  name='settings.api.apiKey'}}
+    {{>afQuickField  name='settings.api.secret'}}
+    <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+      {{/autoForm}}
+  </div>
 </template>

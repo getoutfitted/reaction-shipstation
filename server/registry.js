@@ -18,7 +18,7 @@ ReactionCore.registerPackage({
     route: '/dashboard/shipstation/settings',
     provides: 'settings',
     label: 'Shipstation Settings',
-    name: 'shipStationSettings',
-    template: 'shipStationSettings'
+    name: 'shipstationSettings',
+    template: 'shipstationSettings'
   }]
 });

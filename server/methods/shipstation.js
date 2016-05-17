@@ -6,7 +6,6 @@ function shipstationPackageConfigured(shipstation) {
       || !shipstation.settings.api
       || !shipstation.settings.api.apiKey
       || !shipstation.settings.api.secret) {
-    console.log('did we get here?')
     throw new Error('403 Shiptation API Keys are not configured');
   }
 }

@@ -2,7 +2,7 @@ ReactionCore.registerPackage({
   label: 'Shipstation',
   name: 'reaction-shipstation',
   icon: 'fa fa-cog',
-  autoEnable: false,
+  autoEnable: true,
   registry: [{
     route: '/dashboard/shipstation',
     provides: 'dashboard',

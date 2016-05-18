@@ -22,12 +22,18 @@ Meteor.methods({
     let formattedAuth = shipstationPackage.settings.api.apiKey + ':' + shipstationPackage.settings.api.secret;
     let encodedAuth = Base64.encode(formattedAuth);
 
-    HTTP.call('POST', 'https://ssapi.shipstation.com/orders/createorder', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + encodedAuth
-      },
-      data: order
-    });
+    try {
+      HTTP.call('POST', 'https://ssapi.shipstation.com/orders/createorder', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + encodedAuth
+        },
+        data: order
+      });
+      ReactionCore.Log.info(`AdvancedFulfillment pushed order ${af.orderNumber} to ShipStation`);
+    }
+    catch(e) {
+      ReactionCore.Log.error(`${order.orderNumber} was not uploaded to Shipstation.`)
+    }
   }
 });

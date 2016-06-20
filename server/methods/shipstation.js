@@ -30,10 +30,10 @@ Meteor.methods({
         },
         data: order
       });
-      ReactionCore.Log.info(`AdvancedFulfillment pushed order ${af.orderNumber} to ShipStation`);
+      ReactionCore.Log.info(`AdvancedFulfillment pushed order ${order.orderNumber} to ShipStation`);
     }
     catch(e) {
-      ReactionCore.Log.error(`${order.orderNumber} was not uploaded to Shipstation.`)
+      ReactionCore.Log.error(`${order.orderNumber} was not uploaded to Shipstation. Error ${e}`)
     }
   }
 });

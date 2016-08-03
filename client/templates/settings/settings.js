@@ -1,8 +1,18 @@
+import { Template } from 'meteor/templating';
+import { Packages } from '/lib/collections';
+import { Reaction } from '/client/api';
+import { ShipstationPackageConfig } from '../../../lib/collections';
+
+import './settings.html';
+
 Template.shipstationSettings.helpers({
+  ShipstationPackageConfig: function() {
+    return ShipstationPackageConfig;
+  },
   packageData: function () {
-    return ReactionCore.Collections.Packages.findOne({
+    return Packages.findOne({
       name: 'reaction-shipstation',
-      shopId: ReactionCore.getShopId()
+      shopId: Reaction.getShopId()
     });
   }
 });

@@ -1,3 +1,10 @@
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
+import { Packages } from '/lib/collections';
+import { Reaction, Logger } from '/server/api';
+import { HTTP } from 'meteor/http';
+import { Base64 } from 'meteor/base64';
+
 function shipstationPackageConfigured(shipstation) {
   if (!shipstation || !shipstation.enabled) {
     throw new Error('403 Access Denied, Shipstation is not enabled for this shop.');
@@ -14,9 +21,9 @@ Meteor.methods({
   'shipstation/createOrder': function (order) {
     check(order, Object);
 
-    const shipstationPackage = ReactionCore.Collections.Packages.findOne({
+    const shipstationPackage = Packages.findOne({
       name: 'reaction-shipstation',
-      shopId: ReactionCore.getShopId()
+      shopId: Reaction.getShopId()
     });
     shipstationPackageConfigured(shipstationPackage);
     let formattedAuth = shipstationPackage.settings.api.apiKey + ':' + shipstationPackage.settings.api.secret;
@@ -30,10 +37,10 @@ Meteor.methods({
         },
         data: order
       });
-      ReactionCore.Log.info(`AdvancedFulfillment pushed order ${order.orderNumber} to ShipStation`);
+      Logger.info(`AdvancedFulfillment pushed order ${order.orderNumber} to ShipStation`);
     }
     catch(e) {
-      ReactionCore.Log.error(`${order.orderNumber} was not uploaded to Shipstation. Error ${e}`)
+      Logger.error(`${order.orderNumber} was not uploaded to Shipstation. Error ${e}`)
     }
   }
 });

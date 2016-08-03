@@ -1,5 +1,8 @@
-Shipstation = {};
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
+import { _ } from 'meteor/underscore';
 
+export const Shipstation = {};
 
 Shipstation.createOrder = function (order) {
   check(order, Object);

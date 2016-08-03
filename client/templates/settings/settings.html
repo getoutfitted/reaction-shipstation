@@ -1,8 +1,8 @@
 <template name='shipstationSettings'>
     <div class="panel-body">
     {{#autoForm
-        collection="ReactionCore.Collections.Packages"
-        schema="ReactionCore.Schemas.ShipstationPackageConfig"
+        collection=Collections.Packages
+        schema=ShipstationPackageConfig
         doc=packageData
         type="update"
         id="shipstation-update-form"
